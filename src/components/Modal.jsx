@@ -31,11 +31,10 @@ const Modal = ({ closeModal }) => {
             console.log('Files uploaded successfully!');
             closeModal();
         } catch (error) {
+            alert("Failed to  uloading files")
             console.error('Error uploading files:', error);
         }
     };
-
-    console.log(uploadedFiles)
 
     return (
         <div className="absolute z-10 top-0 left-0 right-0 bottom-0 bg-opacity-50 flex items-center justify-center shadow-xl">
