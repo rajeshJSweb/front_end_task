@@ -4,16 +4,16 @@ const ApiContext = createContext();
 
 /*eslint-disable*/
 const ApiProvider = ({ children }) => {
-  const [data, setData] = useState([]);
+  const [data, setImage] = useState([]);
 
   useEffect(() => {
-    fetch('data.json')
+    fetch('https://taskserver-production-1ddf.up.railway.app/image')
       .then(res => res.json())
-      .then(data => setData(data))
+      .then(data => setImage(data))
   }, [])
 
   const contextValue = {
-    data,
+    data
 
   };
   return <ApiContext.Provider value={contextValue}>{children}</ApiContext.Provider>;

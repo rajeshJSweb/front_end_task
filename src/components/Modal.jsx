@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Modal = ({ closeModal }) => {
     const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -20,18 +21,22 @@ const Modal = ({ closeModal }) => {
     const handleUpload = async () => {
         try {
             const formData = new FormData();
+
             uploadedFiles.forEach((file) => {
                 formData.append('files', file);
             });
-            await axios.post('http://localhost:5000/image', formData, {
+
+            const response = await axios.post('https://taskserver-production-1ddf.up.railway.app/image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log('Files uploaded successfully!');
+
+            toast.success('Files uploaded successfully!');
+            console.log('Files uploaded successfully!', response);
             closeModal();
         } catch (error) {
-            alert("Failed to  uloading files")
+            alert('Failed to upload files');
             console.error('Error uploading files:', error);
         }
     };
@@ -62,6 +67,7 @@ const Modal = ({ closeModal }) => {
                     <button className='mt-5 shadow-lg bg-purple-500 hover:bg-purple-950 px-7 text-center text-white font-semibold py-1 rounded-md' type="button" onClick={handleUpload}>
                         Upload
                     </button>
+                    <ToastContainer />
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import Card from "./Card";
 const Cards = () => {
     return (
         <div className="inline-flex gap-2">
-            <div className="w-[355px] flex flex-col gap-2">
+            <div className="w-[355px]">
                 <div className="bg-slate-100 py-4 px-2 flex flex-col gap-2">
                     <div className="flex justify-between mb-4">
                         <div className="flex items-center gap-1">

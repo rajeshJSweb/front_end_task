@@ -8,11 +8,13 @@ import Modal from "./Modal";
 
 /*eslint-disable*/
 const Card = () => {
-    const { data } = useApi();
+    const { data } = useApi()
     const [openModalId, setOpenModalId] = useState(null);
 
     if (!data) {
-        return <p>Loading...</p>;
+        return (
+            <p>Loading....</p>
+        )
     }
 
     const openModal = (id) => {
@@ -22,10 +24,11 @@ const Card = () => {
     const closeModal = () => {
         setOpenModalId(null);
     };
+
     return (
         <div className="h-screen overflow-y-auto flex flex-col gap-3">
-            {
-                data.map(curElem => <div key={curElem.id} className="bg-white p-2 rounded-md relative">
+            {data?.map(curElem => (
+                <div className="bg-white p-2 rounded-md relative">
                     <div className="flex justify-between">
                         <div className="flex gap-2 items-center">
                             <img className="w-[30px] h-[30px] rounded-full" src={avater} alt="" />
@@ -33,7 +36,7 @@ const Card = () => {
                         </div>
                         <div className="flex gap-2 items-center">
                             <img className="w-[30px] h-[30px] rounded-full" src={avater} alt="" />
-                            <h1>{curElem.name}</h1>
+                            <h1>Sadik Istiak</h1>
                         </div>
                     </div>
                     <div className="flex justify-between mt-4">
@@ -59,8 +62,8 @@ const Card = () => {
                             <p>15</p>
                         </div>
                         <div className="flex items-center gap-1 text-[15px]">
-                            <MdAttachFile onClick={() => openModal(curElem.id)} className="text-[18px] cursor-pointer" />
-                            <p>25</p>
+                            <MdAttachFile onClick={() => openModal(curElem._id)} className="text-[18px] cursor-pointer" />
+                            <p>{curElem.image.length}</p>
                         </div>
                         <div className="flex items-center text-[15px]">
                             <MdDateRange className="text-[18px] font-bold" />
@@ -68,7 +71,7 @@ const Card = () => {
                         </div>
                     </div>
                 </div>
-                )}
+            ))}
             {openModalId !== null && <Modal closeModal={closeModal} />}
         </div>
     );
